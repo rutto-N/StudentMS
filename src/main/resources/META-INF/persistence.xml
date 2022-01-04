@@ -3,11 +3,11 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
     <persistence-unit name="ProjectPU" transaction-type="JTA">
-        <jta-data-source>java:jboss/datasources/ProjectDS</jta-data-source>
+        <jta-data-source>java:/ProjectDs</jta-data-source>
         <properties>
 
             <!-- Database connection settings -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect" />
             <property name="hibernate.integration.envers.enabled" value="false"/>
             <property name="hibernate.archive.autodetection" value="class, hbm" />
             <property name="hibernate.connection.max_allowed_packet" value="1073741824" />
@@ -25,7 +25,7 @@
 
             <!-- Print SQL to stdout. -->
             <property name="show_sql" value="true" />
-            <property name="format_sql" value="false" />
+            <property name="format_sql" value="true" />
 
             <!-- update schema on SessionFactory build -->
             <property name="hibernate.hbm2ddl.auto" value="update" />

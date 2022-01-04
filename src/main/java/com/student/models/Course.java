@@ -9,6 +9,7 @@ import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,7 @@ public class Course implements Serializable{
     private String name;
 
     @ManyToOne
+    @Getter(onMethod_ = @JsonIgnore)
     private Department department;
 
     @Getter(onMethod_ = @JsonIgnore)
@@ -40,8 +42,10 @@ public class Course implements Serializable{
     @OneToMany(mappedBy = "course")
     private List<Student> students;
 
-    @OneToMany(mappedBy = "course",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
     private List<Unit> units;
+
+
 
 
 }

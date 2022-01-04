@@ -3,6 +3,7 @@ package com.student.dao;
 import com.student.database.DbConn;
 import com.student.interfaces.CourseDaoI;
 import com.student.models.Course;
+import com.student.testdao.GenericDao;
 import com.student.utils.CustomException;
 
 import javax.inject.Inject;
@@ -15,7 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class CourseDao implements CourseDaoI {
+public class CourseDao extends GenericDao<Course> implements CourseDaoI {
 
     @Inject
     DbConn dbConn;

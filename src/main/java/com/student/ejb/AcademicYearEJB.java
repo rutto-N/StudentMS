@@ -39,27 +39,28 @@ public class AcademicYearEJB {
     public AcademicYear save(AcademicYear academicYear) throws CustomException {
         if (academicYear == null)
             throw new CustomException("Cant be null!!");
-        if (academicYear!=null){
-            Date start= DateHelper.stringToDate(academicYear.getStartDate());
-            Date end=DateHelper.stringToDate(academicYear.getEndDate());
+        AcademicYear newAcademicYear = null;
+        if (academicYear != null) {
+            Date start = DateHelper.stringToDate(academicYear.getStartDate());
+            Date end = DateHelper.stringToDate(academicYear.getEndDate());
 
-            String year=DateHelper.combine(start,end);
+            String year = DateHelper.combine(start, end);
             academicYear.setYear(year);
             //check if academic year exists
-            if (academicYear.getStartDate().compareTo(academicYear.getEndDate())>0){//start after end
+            if (academicYear.getStartDate().compareTo(academicYear.getEndDate()) > 0) {//start after end
                 throw new CustomException("Start date cant be after end date");
 
-            }else if(academicYear.getStartDate().compareTo(academicYear.getEndDate())<0){//start before end
-                AcademicYear newAcademicYear=entityManager.merge(academicYear);
+            } else if (academicYear.getStartDate().compareTo(academicYear.getEndDate()) < 0) {//start before end
+                newAcademicYear = entityManager.merge(academicYear);
 
-            }else if(academicYear.getStartDate().compareTo(academicYear.getEndDate())==0){//dates equal
+            } else if (academicYear.getStartDate().compareTo(academicYear.getEndDate()) == 0) {//dates equal
                 throw new CustomException("Start date cant be equal to end date");
             }
         }
 
-        academicYear = yearDao.save(academicYear);
+//        academicYear = yearDao.save(academicYear);
 
-        return academicYear;
+        return newAcademicYear;
     }
 
     public MessageResponse save(Map<String, String[]> params){

@@ -21,7 +21,7 @@ public class Enrolment extends BaseEntity {
     @Getter(onMethod_ = @JsonIgnore)
     private int semesterId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Semester semester;
 
     @ManyToOne(optional = false)

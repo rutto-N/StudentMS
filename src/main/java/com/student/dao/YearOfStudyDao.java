@@ -2,6 +2,7 @@ package com.student.dao;
 
 import com.student.interfaces.YearOfStudyDaoI;
 import com.student.models.YearOfStudy;
+import com.student.testdao.GenericDao;
 import com.student.utils.CustomException;
 
 import javax.persistence.EntityManager;
@@ -9,13 +10,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
-public class YearOfStudyDao implements YearOfStudyDaoI {
+public class YearOfStudyDao extends GenericDao<YearOfStudy> implements YearOfStudyDaoI {
     @PersistenceContext
     private EntityManager entityManager;
 
 
     @Override
-    public YearOfStudy save(YearOfStudy yearOfStudy) throws CustomException {
+    public YearOfStudy save(YearOfStudy yearOfStudy) throws CustomException{
         return entityManager.merge(yearOfStudy);
     }
 

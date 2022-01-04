@@ -9,7 +9,8 @@ public enum UserType {
 
     ADMIN(LoginAdminUserBean.class),
     LECTURER(LoginLecturerUserBean.class),
-    STUDENT(LoginStudentUserBean.class);
+    STUDENT(LoginStudentUserBean.class),
+    DEVELOPER(LoginStudentUserBean.class);
 
     private Class<? extends LoginUserBeanI> clazz;
 

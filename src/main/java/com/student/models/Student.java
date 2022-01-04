@@ -26,14 +26,15 @@ public class Student extends Person {
     private int courseId;
 
     @ManyToOne(optional = false)
+    @Getter(onMethod_ = @JsonIgnore)
     private YearOfStudy yearOfStudy;
 
     @Transient
     @Getter(onMethod_ = @JsonIgnore)
     private int yearOfStudyId=1;
 
-    @Formula("(yearOfStudy_id)")
-    private int yearId;
+//    @Formula("(yearOfStudy_id)")
+//    private int yearId;
 
     @Formula("(select u.name from yearsofstudy u where u.id=yearOfStudy_id )")
     private String year;

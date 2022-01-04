@@ -17,7 +17,7 @@ public class DepartmentsApi {
     private DepartmentEjbI departmentEjb;
 
     @GET
-    @Path("list")
+//    @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response list(){
         Department department=new Department();
@@ -25,7 +25,7 @@ public class DepartmentsApi {
     }
 
     @POST
-    @Path("save")
+//    @Path("save")
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(Department department)  {
         try {

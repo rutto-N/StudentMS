@@ -16,7 +16,7 @@ public class Lecturer extends Person{
     @Column(unique = true,nullable = false)
     private String lecturerId;
 
-    @OneToMany(mappedBy = "lecturer",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "lecturer",fetch = FetchType.LAZY)
     @Getter(onMethod_ = @JsonIgnore)
     private List<Unit> units;
 }

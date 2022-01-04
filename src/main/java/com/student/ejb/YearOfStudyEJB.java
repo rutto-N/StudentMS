@@ -3,7 +3,6 @@ package com.student.ejb;
 import com.student.dao.ModelListWrapper;
 import com.student.dao.YearOfStudyDao;
 import com.student.interfaces.YearOfStudyDaoI;
-import com.student.models.Unit;
 import com.student.models.YearOfStudy;
 import com.student.testdao.GenericDao;
 import com.student.utils.CustomException;
@@ -25,7 +24,7 @@ public class YearOfStudyEJB {
     private EntityManager entityManager;
 
     @Inject
-    YearOfStudyDaoI yearDao;
+    YearOfStudyDao yearDao;
 
     public MessageResponse newYearOfStudy(Map<String, String[]> params) {
 
@@ -43,7 +42,7 @@ public class YearOfStudyEJB {
         if (yearOfStudy != null) {
             System.out.println(yearOfStudy.getName());
 
-            YearOfStudy newYear= (YearOfStudy) new GenericDao().save(yearOfStudy);
+            YearOfStudy newYear= (YearOfStudy) new GenericDao().create(yearOfStudy);
 
             if (newYear!=null) {
                 messageResponse = new MessageResponse(true,
@@ -79,7 +78,8 @@ public class YearOfStudyEJB {
         if (year == null)
             throw new CustomException("Invalid!!");
         if (year!=null)
-            year = yearDao.save(year);
+            System.out.println(year.getName()+"Year of study");
+            year = yearDao.create(year);
         return year;
     }
 }

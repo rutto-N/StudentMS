@@ -19,7 +19,7 @@ public class Score extends BaseEntity{
 
     private double marks;
 
-    @OneToMany(mappedBy = "score",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "score",fetch = FetchType.LAZY)
     private List<Enrolment> enrolments;
 
     @OneToOne

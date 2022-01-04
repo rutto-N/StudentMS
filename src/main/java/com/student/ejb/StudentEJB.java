@@ -51,6 +51,7 @@ public class StudentEJB implements StudentEjbI {
             throw new CustomException("Invalid Student name!!");
         if (student!=null){
             student = studentDao.save(student);
+            System.out.println(student.toString());
             sendMail(student);
         }
         return student;

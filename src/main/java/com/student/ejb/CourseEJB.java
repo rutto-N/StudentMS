@@ -1,5 +1,6 @@
 package com.student.ejb;
 
+import com.student.dao.CourseDao;
 import com.student.dao.ModelListWrapper;
 import com.student.interfaces.CourseDaoI;
 import com.student.interfaces.DepartmentDaoI;
@@ -12,7 +13,7 @@ import javax.inject.Inject;
 @Stateless
 public class CourseEJB implements CourseEjbI {
     @Inject
-    CourseDaoI courseDao;
+    CourseDao courseDao;
 
     @Inject
     DepartmentDaoI departmentDao;
@@ -27,7 +28,7 @@ public class CourseEJB implements CourseEjbI {
         if (courseDao.getCourseByName(course.getName())!=null){
             throw new CustomException("Course exists");
         }
-        course = courseDao.save(course);
+        course = courseDao.create(course);
 
         return course;
     }

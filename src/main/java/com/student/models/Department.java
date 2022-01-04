@@ -23,7 +23,7 @@ public class Department implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "department",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department",fetch = FetchType.LAZY)
     private List<Course> courses;
 
 

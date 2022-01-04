@@ -12,34 +12,25 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 
-public class GenericDao implements GenericDaoI {
-
+public class GenericDao<T> {
     @PersistenceContext
     private EntityManager em;
 
-    private Object object;
+    private Class<T> tClass;
 
-    public GenericDao() {
-        this.object=new Object();
 
+    public T create(T t) {
+        return em.merge(t);
     }
 
-
-    @Override
-    public Object save(Object object) {
-        return em.merge(object);
-    }
-
-    @Override
-    public ModelListWrapper<Object> list(Object filter, int start, int limit){
-        ModelListWrapper<Object> results = new ModelListWrapper<Object>();
+    public ModelListWrapper<T> list(T filter, int start, int limit){
+        ModelListWrapper<T> results = new ModelListWrapper<T>();
 
         if (filter!=null){
 
-            String hql ="";
-//                    "SELECT c FROM Object c WHERE c.id is not null";
+            String hql ="FROM "+tClass+"c WHERE c.id is not null";
 
-            Query query = em.createQuery(hql, Object.class);
+            Query query = em.createQuery(hql, tClass.getClass());
 
             if (start > 0)
                 query.setFirstResult(start);
@@ -47,7 +38,7 @@ public class GenericDao implements GenericDaoI {
             if (limit > 0)
                 query.setMaxResults(limit);
 
-            List<Object> list = query.getResultList();
+            List<T> list = query.getResultList();
 
             results.setList(list);
             results.setCount(list.size());
@@ -55,18 +46,16 @@ public class GenericDao implements GenericDaoI {
         return results;
     }
 
-    @Override
-    public Object findById(int id) {
+    public T findById(int id) {
 
-        return em.find(Object.class,id);
+        return em.find(tClass,id);
     }
 
-    @Override
-    public Object findByName(String name) {
+    public T findByName(String name) {
 
         CriteriaBuilder criteria=em.getCriteriaBuilder();
-        CriteriaQuery<Object> query= criteria.createQuery(Object.class);
-        Root<Object> res = query.from(Object.class);
+        CriteriaQuery<T> query= criteria.createQuery(tClass);
+        Root<T> res = query.from(tClass);
         query.where(criteria.equal(res.get("name"),name));
 
         try {
@@ -77,10 +66,8 @@ public class GenericDao implements GenericDaoI {
         }
     }
 
-    @Override
-    public Object delete(int id) {
+    public void delete(int id) {
         em.remove(findById(id));
-        return object ;
     }
 
 

@@ -24,13 +24,13 @@ public class Unit  implements Serializable {
     @Column(name = "code",nullable = false)
     private String code;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Semester semester;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private YearOfStudy yearOfStudy;
 
     @Transient

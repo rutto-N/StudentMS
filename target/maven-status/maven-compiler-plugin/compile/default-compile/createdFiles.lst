@@ -14,13 +14,16 @@ com\student\dao\CourseDao.class
 com\student\ejb\UnitEJB.class
 com\student\interfaces\AcademicYearDaoI.class
 com\student\ejb\EnrolmentEJB.class
+com\student\rest\filters\AuthFilter.class
 com\student\actions\YearOfStudyAction.class
 com\student\events\Email.class
 com\student\services\LoginUser.class
 com\student\enums\Status.class
 com\student\events\MailServiceEJB.class
+com\student\dao\DeveloperDao.class
 com\student\ejb\YearOfStudyEJB.class
 com\student\models\BaseEntity.class
+com\student\models\Developer.class
 com\student\models\Score.class
 com\student\utils\ResultWrapper.class
 com\student\actions\EnrolAction.class
@@ -55,6 +58,7 @@ com\student\dao\UserDao.class
 com\student\services\LoginLecturerUserBean.class
 com\student\actions\LecturerAction.class
 com\student\dao\YearDao.class
+com\student\ejb\DeveloperEJB.class
 com\student\utils\DateHelper.class
 com\student\dto\RestResponse.class
 com\student\ejb\UserEJB.class
@@ -88,8 +92,10 @@ com\student\ejb\LecturerEjbI.class
 com\student\dao\SemesterDao.class
 com\student\ejb\PromotionEJB.class
 com\student\enums\UserType.class
+com\student\rest\DeveloperApi.class
 com\lecturer\rest\LecturerApi.class
 com\student\ejb\LecturerEJB.class
+com\student\rest\filters\CORSFilter.class
 com\student\interfaces\DepartmentDaoI.class
 com\student\interfaces\EnrolmentDaoI.class
 com\student\actions\PeriodAction.class
